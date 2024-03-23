@@ -46,7 +46,7 @@ Skills
 * Programming: C, C++, CUDA C/C++, Python, Rust
 * Language: English (native), German (native), French (B2-C1)
 
-Publications
+Papers
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
@@ -56,12 +56,6 @@ Talks
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
 Other activities
