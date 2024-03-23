@@ -5,7 +5,7 @@ permalink: /papers/2023-04-18-knot-invariants-ml
 excerpt: 'Developing a digital representation of knots for ML tasks such as learning knot invariants'
 date: 2023-04-18
 venue: 'n/a'
-paperurl: 'files/gnns-knot-theory.pdf'
+paperurl: '/files/gnns-knot-theory.pdf'
 citation: #'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
 ---
 

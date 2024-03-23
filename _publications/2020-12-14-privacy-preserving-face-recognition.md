@@ -5,7 +5,7 @@ permalink: /papers/2020-12-14-privacy-preserving-face-recognition
 excerpt: 'A new framework to preserve anonymity of people in public video surveillance using mulit-party computation'
 date: 2020-12-14
 venue: 'n/a'
-paperurl: 'files/thesis.pdf'
+paperurl: '/files/thesis.pdf'
 citation: #'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
 ---
 
