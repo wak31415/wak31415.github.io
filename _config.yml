@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "William Koch"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
@@ -24,11 +24,11 @@ author:
   avatar           : "bio-photo.jpeg"
   name             : "William Koch"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
+  bio              : "Interested in machine learning and computer graphics."
   location         : "Munich"
   employer         : "Boston Consulting Group"
   uri              : # URL
-  email            : "mail[at]william-koch.com" 
+  email            : "mail@william-koch.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
