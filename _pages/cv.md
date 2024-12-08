@@ -17,7 +17,10 @@ Education
 
 Work and research experience
 ======
-**Associate, Boston Consulting Group GmbH (from 2023)**
+**Research Intern, Princeton University Computational Imaging Lab (Nov - Jan 2025)**
+* Conducted research on 4D (dynamic) object & scene reconstruction
+
+**Associate, Boston Consulting Group GmbH (2023 - present)**
 
 **ML research intern, Active Vision Lab, University of Oxford (2023)**
 * Conducted research on using non-rigid neural radiance fields for virtual reality video conferencing with the Engineering department at the University of Oxford; supervised by Ismail Ceylan, Victor Prisacariu and Philip Torr
