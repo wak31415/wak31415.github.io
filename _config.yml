@@ -24,7 +24,7 @@ author:
   avatar           : "bio-photo.jpeg"
   name             : "William Koch"
   pronouns         : # example: "she/her"  
-  bio              : "Interested in machine learning and computer graphics."
+  bio              : "Interested in machine learning\nand computer graphics."
   location         : "Munich"
   employer         : "Boston Consulting Group"
   uri              : # URL
