@@ -17,10 +17,13 @@ Education
 
 Work and research experience
 ======
-**Research Intern, Princeton University Computational Imaging Lab (Nov - Jan 2025)**
-* Conducted research on 4D (dynamic) object & scene reconstruction
+**PhD Candidate, Princeton University (Aug 2025 - present)**
 
-**Associate, Boston Consulting Group GmbH (2023 - present)**
+* Our paper got accepted to [NeurIPS](https://arxiv.org/pdf/2510.26786)!
+* Research on Gaussian Splatting and unsupervised structure recognition - reach out for details.
+
+**Associate, Boston Consulting Group GmbH (Nov 2023 - Jul 2025)**
+* Please reach out for details.
 
 **ML research intern, Active Vision Lab, University of Oxford (2023)**
 * Conducted research on using non-rigid neural radiance fields for virtual reality video conferencing with the Engineering department at the University of Oxford; supervised by Ismail Ceylan, Victor Prisacariu and Philip Torr
@@ -55,10 +58,10 @@ Papers
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
+Preprints
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
+  <ul>{% for post in site.preprints reversed %}
+    {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
 Other activities

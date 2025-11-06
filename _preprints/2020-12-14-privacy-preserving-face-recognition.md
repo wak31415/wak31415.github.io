@@ -2,11 +2,11 @@
 title: "Privacy-Preserving Face Recognition in Large Scale Video Surveillance Systems"
 collection: papers
 permalink: /papers/2020-12-14-privacy-preserving-face-recognition
-excerpt: 'A new framework to preserve anonymity of people in public video surveillance using mulit-party computation'
+excerpt: ''
 date: 2020-12-14
-venue: 'n/a'
+venue: ''
 paperurl: '/files/thesis.pdf'
-citation: #'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
+citation: 'William Koch. 2020. "Privacy-Preserving Face Recognition in Large Scale Video Surveillance Systems". Self-published.'
 ---
 
 The use of video surveillance, let alone face recognition technologies, in public spaces is highly controversial. While some claim that face recognition is essential to effectively combat crime and terrorism, others fear the potential abuse of such systems and how it may impact the freedom of the individual.

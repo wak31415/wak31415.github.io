@@ -7,9 +7,9 @@ redirect_from:
   - /about.html
 ---
 
-I am currently working as an Associate for BCG (Boston Consulting Group) in Munich. I previously completed my master in Computer Science at the University of Oxford (advised by Phil Torr, Victor Prisacariu and Ismail Ceylan), and graduated from École Polytechnique in Mathematics & Computer Science with Summa Cum Laude.
+I am currently a PhD Candidate in Computer Science at Princeton University, advised by Prof. Felix Heide, after having worked in strategy consulting (Boston Consulting Group).
 
 My interests include, or have included
-* Privacy and related research in cryptography, e.g., secure multi-party computation and homomorphic encryption, as well as ethical and legal considerations
-* Intersection between classical computer graphics and machine learning, especially the reconstruction of dynamic environments
+* Intersection between classical computer graphics and machine learning (Gaussian Splatting, NeRFs), especially on unsupervised structural awareness
 * Geometric approaches to deep learning, in particular graph-based methods
+* Privacy and related research in cryptography, e.g., secure multi-party computation and homomorphic encryption, as well as ethical and legal considerations
