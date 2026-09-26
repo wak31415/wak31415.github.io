@@ -4,9 +4,9 @@ description: An initial preview of SCION by William Koch.
 date: 2026-09-01
 section: publications
 featured: true
-badge: Forthcoming
-venue: Research preview
-articleMeta: Research preview · Details forthcoming
+badge: NeurIPS 2026
+venue: NeurIPS 2026
+articleMeta: NeurIPS 2026 · Details forthcoming
 summary: Project details will be published with the accompanying website.
 deck: An early visual preview. The full project page and paper details will be published with the accompanying website.
 aside:
