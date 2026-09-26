@@ -1,0 +1,51 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { getPage, getPapers, paperUrl } from "../lib/content";
+
+const cv = await getPage("cv");
+const { Content } = await render(cv);
+const papers = await getPapers();
+const groups = [
+  { heading: "Publications", papers: papers.filter((paper) => paper.data.section === "publications") },
+  { heading: "Preprints & theses", papers: papers.filter((paper) => paper.data.section === "earlier") },
+].filter((group) => group.papers.length > 0);
+---
+
+<Base title={cv.data.title} description={cv.data.description}>
+  <header class="page-intro">
+    <div>
+      {cv.data.eyebrow && <p class="eyebrow">{cv.data.eyebrow}</p>}
+      <h1>{cv.data.title}</h1>
+      {cv.data.intro && <p>{cv.data.intro}</p>}
+    </div>
+  </header>
+  <div class="article-layout">
+    {
+      cv.data.aside && (
+        <aside class="article-aside">
+          <p>{cv.data.aside.label}</p>
+          <p class="one-sentence">{cv.data.aside.text}</p>
+        </aside>
+      )
+    }
+    <article class="article-prose cv-prose">
+      <Content />
+      {
+        groups.map(({ heading, papers }) => (
+          <>
+            <h2>{heading}</h2>
+            <ul>
+              {papers.map((paper) => (
+                <li>
+                  <a href={paperUrl(paper)}>{paper.data.title}</a> — {paper.data.summary}{" "}
+                  <span class="cv-venue">{paper.data.articleMeta ?? paper.data.venue}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ))
+      }
+    </article>
+  </div>
+</Base>

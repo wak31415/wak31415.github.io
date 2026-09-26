@@ -1,0 +1,62 @@
+---
+import type { Paper, Project } from "../lib/content";
+
+type Media = Paper["data"]["card"] | Project["data"]["media"];
+
+interface Props {
+  media: Media;
+  badge: string;
+  href?: string;
+  /** Accessible name for the video link. */
+  label: string;
+}
+
+const { media, badge, href, label } = Astro.props;
+const Link = href ? "a" : "div";
+const videoType = (src: string) => `video/${src.split(".").pop() === "webm" ? "webm" : "mp4"}`;
+---
+
+{
+  media.type === "video" && (
+    <div class="media video-media" data-hover-video>
+      <Link class="media-link" href={href} aria-label={href ? label : undefined}>
+        <video muted loop playsinline preload="auto" poster={media.poster}>
+          <source src={media.src} type={videoType(media.src)} />
+        </video>
+        <span class="glass-label">{badge}</span>
+      </Link>
+      <span class="video-play" aria-hidden="true"><span>▶</span></span>
+    </div>
+  )
+}
+{
+  media.type === "image" && (
+    <Link
+      class:list={["media", media.fit !== "cover" && `fit-${media.fit}`]}
+      href={href}
+      style={media.background ? `background: ${media.background}` : undefined}
+    >
+      <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" />
+      <span class="glass-label">{badge}</span>
+    </Link>
+  )
+}
+{
+  media.type === "flow" && (
+    <div class:list={["media", "project-visual", `flow-${media.theme}`]} role="img" aria-label={media.label}>
+      <span class="glass-label">{badge}</span>
+      <div>
+        {media.steps.map((step, index) => (
+          <>
+            {index > 0 && <i>→</i>}
+            <strong>{step}</strong>
+          </>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  import "../scripts/hover-video.js";
+</script>

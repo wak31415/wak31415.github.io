@@ -1,0 +1,27 @@
+---
+import { render } from "astro:content";
+import CardMedia from "./CardMedia.astro";
+import LinkPills from "./LinkPills.astro";
+import type { Project } from "../lib/content";
+
+interface Props {
+  project: Project;
+  /** "overview" shows the short summary; "catalog" shows the Markdown body. */
+  variant: "overview" | "catalog";
+}
+
+const { project, variant } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const showBody = variant === "catalog" && Boolean(project.body?.trim());
+---
+
+<article class="feature-card" id={variant === "catalog" ? project.id : undefined}>
+  <CardMedia media={data.media} badge={data.badge} href={data.url} label={`Open ${data.title}`} />
+  <div class="card-body">
+    <p class="meta">{data.meta}</p>
+    <h3>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</h3>
+    {showBody ? <Content /> : <p>{data.summary}</p>}
+    <LinkPills links={data.links} />
+  </div>
+</article>

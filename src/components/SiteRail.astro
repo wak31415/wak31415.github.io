@@ -1,0 +1,22 @@
+---
+import { site } from "../site.config";
+import { isExternal } from "../lib/content";
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+---
+
+<aside class="site-rail">
+  <a class="wordmark" href="/" aria-label={`${site.name}, home`}>William<br /> Koch</a>
+  <nav aria-label="Primary navigation">
+    {
+      site.nav.map(({ label, href }) => (
+        <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+          {label}
+          {isExternal(href) && <span aria-hidden="true"> ↗</span>}
+        </a>
+      ))
+    }
+  </nav>
+  <p class="rail-note">{site.location}<br /><a href={`mailto:${site.email}`}>Email me</a></p>
+</aside>
