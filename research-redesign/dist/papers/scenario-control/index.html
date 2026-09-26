@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A plain-language explanation of ScenarioControl by William Koch."><title>ScenarioControl, in plain language — William Koch</title><link rel="stylesheet" href="/assets/site.css"></head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+  <aside class="site-rail"><a class="wordmark" href="/" aria-label="William Koch, home">William<br> Koch</a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/papers/" aria-current="page">Papers</a><a href="/projects/">Projects</a><a href="/talks/">Talks</a><a href="https://www.william-koch.com/cv/">CV <span aria-hidden="true">↗</span></a></nav><p class="rail-note">Princeton, New Jersey<br><a href="mailto:william.koch@princeton.edu">Email me</a></p></aside>
+  <main id="article">
+    <header class="article-header"><div><a class="back-link" href="/papers/">← All papers</a><p class="meta">ECCV 2026 · Generative world models</p><h1>ScenarioControl, in plain language</h1><p class="article-deck">How do you build a driving-scenario generator that listens to an image or a sentence without losing the precise structure a simulator needs?</p><p class="article-authors">Lili Gao*, Yanbo Xu*, William Koch*, Samuele Ruffino, Luke Rowe, Behdad Chalaki, Dmitriy Rivkin, Julian Ost, Roger Girgis, Mario Bijelic, Felix Heide</p></div></header>
+    <figure class="article-hero wide"><img src="/assets/scenario-control.webp" alt="ScenarioControl pipeline from image and text conditioning to a generated vectorized driving scenario" width="4602" height="1066"></figure>
+    <div class="article-layout">
+      <aside class="article-aside"><p>In one sentence</p><p class="one-sentence">ScenarioControl turns an image or text prompt into a structured, editable driving world—not just a video of one.</p><div class="pills"><a href="https://princeton-computational-imaging.github.io/ScenarioControl/">Project</a><a href="https://arxiv.org/abs/2604.17147">arXiv</a><a href="https://github.com/princeton-computational-imaging/ScenarioControl/tree/main">GitHub</a></div></aside>
+      <article class="article-prose">
+        <p>A useful driving simulator needs more than plausible pixels. It needs lanes, road geometry, cars, pedestrians, and their motion over time in a form that another system can inspect and change. ScenarioControl generates that underlying scene structure while still accepting the intuitive inputs people actually want to use: a reference image or a written description.</p>
+        <h2>The problem</h2>
+        <p>Generative models are good at making scenes that look realistic, but detailed control is harder. A prompt such as “an intersection at a red light with one car ahead” describes the whole scene at once. A simulator, by contrast, represents the scene as many sparse elements: lane segments, individual actors, positions, and trajectories. Connecting those two views is the central challenge.</p>
+        <h2>The core idea</h2>
+        <p>We represent the road and all dynamic actors together in a vectorized latent space. The model can therefore reason about global context—what kind of scene this is—and local relationships, such as which vehicle belongs in which lane.</p>
+        <p>A cross-global control mechanism brings the image or text condition into the model at both levels. Standard cross-attention handles fine-grained correspondences; a lightweight global branch carries the overall scene context. The decoder then produces explicit map and actor elements rather than stopping at an image.</p>
+        <h2>What comes out</h2>
+        <p>The generated scenario includes road structure, infrastructure, pedestrians, and reactive agents evolving over time. Because the representation is structured, it can be rendered from different actors’ viewpoints, connected to a video generator, or continued over a longer horizon.</p>
+        <ul><li>Text can specify conditions that are difficult to collect repeatedly in the real world.</li><li>An input image can anchor the generated scenario to a visual observation.</li><li>The vectorized output keeps the scene useful for simulation and downstream control.</li></ul>
+        <h2>Why it matters</h2>
+        <p>Simulation is most useful when it can produce rare or targeted cases, not only random variations. A controllable generator makes it easier to ask for a specific traffic arrangement, preserve realistic interactions, and still obtain the machine-readable structure needed to evaluate an autonomous system.</p>
+        <p class="takeaway">The important shift is from generating how a driving scene looks to generating what the scene is—and keeping both views consistent.</p>
+      </article>
+    </div>
+    <nav class="article-next" aria-label="More papers"><a href="/papers/scion/">← SCION</a><a href="/papers/heir/">Next: HEIR →</a></nav>
+    <footer><span>© 2026 William Koch</span><a href="mailto:william.koch@princeton.edu">Discuss this work</a></footer>
+  </main>
+</body></html>

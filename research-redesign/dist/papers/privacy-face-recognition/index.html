@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A plain-language explanation of William Koch's thesis on privacy-preserving face recognition."><title>Privacy-preserving face recognition — William Koch</title><link rel="stylesheet" href="/assets/site.css"></head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+  <aside class="site-rail"><a class="wordmark" href="/" aria-label="William Koch, home">William<br> Koch</a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/papers/" aria-current="page">Papers</a><a href="/projects/">Projects</a><a href="/talks/">Talks</a><a href="https://www.william-koch.com/cv/">CV <span aria-hidden="true">↗</span></a></nav><p class="rail-note">Princeton, New Jersey<br><a href="mailto:william.koch@princeton.edu">Email me</a></p></aside>
+  <main id="article">
+    <header class="article-header"><div><a class="back-link" href="/papers/">← All papers</a><p class="meta">Preprint · BSc thesis · École Polytechnique / Télécom Paris · 2020</p><h1>Privacy-preserving face recognition</h1><p class="article-deck">Instead of asking one organization to use surveillance responsibly, can the system make unilateral tracking cryptographically impossible?</p></div></header>
+    <figure class="article-hero cover privacy"><img src="/assets/bachelor-thesis-cover.webp" alt="First page of the thesis on privacy-preserving face recognition" width="1107" height="1439"></figure>
+    <div class="article-layout">
+      <aside class="article-aside"><p>In one sentence</p><p class="one-sentence">The framework splits a face-recognition computation between independent parties so that no single party can identify or track someone alone.</p><div class="pills"><a href="https://www.william-koch.com/files/thesis.pdf">Read the PDF</a></div></aside>
+      <article class="article-prose">
+        <p>Face recognition creates a genuine tension. It can help find a particular person, but the same infrastructure can become a system for tracking everyone. Policies and access controls help only as long as the organization operating the system follows them.</p>
+        <h2>A technical system of checks and balances</h2>
+        <p>The thesis replaces a single trusted operator with two independent parties. The camera data and face database are secret-shared, and matching happens through actively secure multi-party computation. Neither party sees the underlying biometric data during the calculation.</p>
+        <p>Most importantly, a match can be completed only when both parties participate. One party cannot quietly alter the watch list or decide to follow a new person without the other party being able to detect it.</p>
+        <h2>Privacy is more than hiding a face</h2>
+        <p>Even if images and identities remain encrypted, metadata can leak information. For example, knowing how many people appear in successive camera frames may reveal a movement profile when a location is quiet. The thesis therefore also studies corrupted participants and proposes an obfuscation method for these indirect traces.</p>
+        <h2>Is it practical?</h2>
+        <p>The online matching phase performed well in the thesis experiments: with a database of 150 entries, four threads could check ten faces per second without revealing their identities. The expensive offline preparation remained a bottleneck and would need further engineering or a trusted cryptographic provider for large-scale, real-time deployment.</p>
+        <h2>What this work argues</h2>
+        <p>The goal is not to claim that public face recognition becomes harmless. It is to show that privacy constraints can be part of the computation itself. Cryptography can enforce a division of power that would otherwise exist only as an organizational promise.</p>
+        <p class="takeaway">A privacy-preserving system should limit what its operator is technically able to do, not merely record whether the operator behaved afterward.</p>
+      </article>
+    </div>
+    <nav class="article-next" aria-label="More papers"><a href="/papers/non-rigid-nerfs/">← Non-rigid NeRFs</a><a href="/papers/">All papers →</a></nav>
+    <footer><span>© 2026 William Koch</span><a href="mailto:william.koch@princeton.edu">Discuss this work</a></footer>
+  </main>
+</body></html>

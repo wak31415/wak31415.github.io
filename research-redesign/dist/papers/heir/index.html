@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A plain-language explanation of HEIR by William Koch."><title>HEIR, in plain language — William Koch</title><link rel="stylesheet" href="/assets/site.css"></head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+  <aside class="site-rail"><a class="wordmark" href="/" aria-label="William Koch, home">William<br> Koch</a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/papers/" aria-current="page">Papers</a><a href="/projects/">Projects</a><a href="/talks/">Talks</a><a href="https://www.william-koch.com/cv/">CV <span aria-hidden="true">↗</span></a></nav><p class="rail-note">Princeton, New Jersey<br><a href="mailto:william.koch@princeton.edu">Email me</a></p></aside>
+  <main id="article">
+    <header class="article-header"><div><a class="back-link" href="/papers/">← All papers</a><p class="meta">NeurIPS 2025 · Geometric learning</p><h1>HEIR, in plain language</h1><p class="article-deck">Complex motion often has a hidden family tree. HEIR learns that tree from the motion itself.</p><p class="article-authors">Cheng Zheng*, William Koch*, Baiang Li, Felix Heide</p></div></header>
+    <figure class="article-hero dark"><img src="/assets/heir-deformation.webp" alt="HEIR deformation comparisons for articulated 3D scenes" width="5692" height="3973"></figure>
+    <div class="article-layout">
+      <aside class="article-aside"><p>In one sentence</p><p class="one-sentence">HEIR discovers which moving parts should inherit motion from which other parts, without being given a skeleton in advance.</p><div class="pills"><a href="https://light.princeton.edu/HEIR/">Project</a><a href="https://arxiv.org/abs/2510.26786">arXiv</a><a href="https://github.com/princeton-computational-imaging/HEIR">GitHub</a></div></aside>
+      <article class="article-prose">
+        <p>When an excavator moves its arm, the bucket follows. When a person raises an upper arm, the forearm and hand inherit much of that motion. We naturally describe these systems as hierarchies, but graphics methods often need that structure to be specified by hand.</p>
+        <h2>The problem</h2>
+        <p>A fixed skeleton works when the object category and its joints are already known. It is much less useful for an unfamiliar deforming scene, a point cloud, or a collection of Gaussian splats. A generic model should be able to infer the right structure from observed motion instead of assuming it.</p>
+        <h2>Motion as a graph</h2>
+        <p>HEIR treats motion elements as vertices in a graph. Directed edges describe possible parent–child relationships. The model learns those relationships from data and separates each element’s movement into two parts: motion inherited from its parent and a local residual of its own.</p>
+        <p>The hierarchy itself is discrete and interpretable, while the learning procedure remains differentiable. That combination lets the model search for structure during training and return a graph a person can inspect afterward.</p>
+        <h2>What we tested</h2>
+        <p>We begin with controlled examples of one-dimensional translation and two-dimensional rotation, where the underlying hierarchy is known. We then apply the same formulation to dynamic 3D Gaussian-splatting scenes, where the elements and their dependencies are substantially more complex.</p>
+        <ul><li>The simple benchmarks show whether the correct hierarchy can be recovered.</li><li>The 3D experiments test whether the learned structure produces coherent deformations.</li><li>The resulting parent–child graph offers an explicit account of how motion is organized.</li></ul>
+        <h2>Why it matters</h2>
+        <p>Learned scene representations are becoming easier to render but not necessarily easier to understand or control. Recovering a useful motion hierarchy gives us a compact structural handle: global motion can propagate through the graph while local motion remains local.</p>
+        <p class="takeaway">HEIR asks the model to learn not only where every element moves, but also which movements explain the others.</p>
+      </article>
+    </div>
+    <nav class="article-next" aria-label="More papers"><a href="/papers/scenario-control/">← ScenarioControl</a><a href="/papers/non-rigid-nerfs/">Next: Non-rigid NeRFs →</a></nav>
+    <footer><span>© 2026 William Koch</span><a href="mailto:william.koch@princeton.edu">Discuss this work</a></footer>
+  </main>
+</body></html>

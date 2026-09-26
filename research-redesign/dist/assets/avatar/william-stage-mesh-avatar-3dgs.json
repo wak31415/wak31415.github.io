@@ -1,0 +1,31 @@
+{
+  "method": "Apple SHARP single-image 3D Gaussian prediction",
+  "source": "raw-stage/william-avatar-neutral.ply",
+  "mask": "input-stage/william-avatar-mask.png",
+  "source_gaussians": 1179648,
+  "foreground_candidates": 457091,
+  "exported_gaussians": 157600,
+  "camera": {
+    "width": 1447,
+    "height": 1447,
+    "focal_length_px": 1418.9002685546875,
+    "principal_point_px": [
+      723.5,
+      723.5
+    ]
+  },
+  "transform": {
+    "source_center_xyz": [
+      -0.0034117110772058368,
+      0.024704388342797756,
+      0.4176301062107086
+    ],
+    "normalization_scale": 3.9743492587055687,
+    "splat_scale_compensation": 1.4,
+    "trimmed_radial_outlier_fraction": 0.015,
+    "coordinate_transform": "x'=x, y'=-y, z'=-z after centering"
+  },
+  "ply_bytes": 8826138,
+  "splat_bytes": 5043200,
+  "license_note": "The SHARP model checkpoint is licensed by Apple for research purposes only. Review ml-sharp/LICENSE_MODEL before non-research or commercial use."
+}
