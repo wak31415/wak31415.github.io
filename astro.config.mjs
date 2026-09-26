@@ -4,6 +4,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://www.william-koch.com",
   build: { format: "directory" },
+  devToolbar: { enabled: false },
   // Old Jekyll URLs that may still be linked from elsewhere.
   redirects: {
     "/research/": "/",
