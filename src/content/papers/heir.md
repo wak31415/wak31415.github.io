@@ -1,5 +1,6 @@
 ---
 title: HEIR
+fullTitle: "HEIR: Learning Graph-Based Motion Hierarchies"
 headline: HEIR, in plain language
 description: A plain-language explanation of HEIR by William Koch.
 date: 2025-10-30
@@ -13,8 +14,8 @@ authors: Cheng Zheng*, William Koch*, Baiang Li, Felix Heide
 deck: Complex motion often has a hidden family tree. HEIR learns that tree from the motion itself.
 aside:
   text: HEIR discovers which moving parts should inherit motion from which other parts, without being given a skeleton in advance.
+url: https://light.princeton.edu/HEIR/
 links:
-  - { label: Project, url: "https://light.princeton.edu/HEIR/" }
   - { label: arXiv, url: "https://arxiv.org/abs/2510.26786" }
   - { label: GitHub, url: "https://github.com/princeton-computational-imaging/HEIR" }
 card:

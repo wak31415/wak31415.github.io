@@ -1,0 +1,19 @@
+---
+interface Props {
+  period?: string;
+  title: string;
+  org?: string;
+  details?: string[];
+}
+
+const { period, title, org, details = [] } = Astro.props;
+---
+
+<li class="cv-entry">
+  <p class="cv-period">{period}</p>
+  <div>
+    <h3>{title}</h3>
+    {org && <p class="cv-org">{org}</p>}
+    {details.length > 0 && <ul>{details.map((detail) => <li>{detail}</li>)}</ul>}
+  </div>
+</li>

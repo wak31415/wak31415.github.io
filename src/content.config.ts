@@ -50,6 +50,8 @@ const papers = defineCollection({
     title: z.string(),
     /** Used in previous/next links between articles. Defaults to `title`. */
     shortTitle: z.string().optional(),
+    /** Full paper title, used on the CV. Defaults to `title`. */
+    fullTitle: z.string().optional(),
     /** The article's <h1>. Defaults to `title`. */
     headline: z.string().optional(),
     /** Search-engine / link-preview description. */
@@ -79,8 +81,11 @@ const papers = defineCollection({
         text: z.string(),
       })
       .optional(),
+    /** Project website. Card image and title link here (falling back to the blog post), and it's the first pill. */
+    url: z.url().optional(),
+    /** Further pills (arXiv, GitHub, PDF, …), shown after "Project" and before "Blog post". */
     links: z.array(link).default([]),
-    /** Overrides the "Read the note" / "Plain-language note" pill. */
+    /** Overrides the "Blog post" pill label. */
     noteLabel: z.string().optional(),
     card: z.discriminatedUnion("type", [image, video]),
     hero: z.discriminatedUnion("type", [image, video]).optional(),
@@ -137,11 +142,29 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     eyebrow: z.string().optional(),
-    intro: z.string().optional(),
     tagline: z.string().optional(),
-    aside: z.object({ label: z.string(), text: z.string() }).optional(),
     contact: z.object({ eyebrow: z.string(), heading: z.string() }).optional(),
   }),
 });
 
-export const collections = { papers, projects, talks, news, pages };
+const cvEntry = z.object({
+  period: z.coerce.string().optional(),
+  title: z.string(),
+  org: z.string().optional(),
+  details: z.array(z.string()).default([]),
+});
+
+/** src/content/cv.yaml, loaded as a single entry with id "cv". */
+const cv = defineCollection({
+  loader: file("src/content/cv.yaml", { parser: (text) => ({ cv: parseYaml(text) }) }),
+  schema: z.object({
+    intro: z.string().optional(),
+    current: z.object({ label: z.string(), text: z.string() }).optional(),
+    education: z.array(cvEntry).default([]),
+    experience: z.array(cvEntry).default([]),
+    skills: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+    activities: z.array(cvEntry).default([]),
+  }),
+});
+
+export const collections = { papers, projects, talks, news, pages, cv };

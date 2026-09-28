@@ -48,3 +48,16 @@ export function formatMonth(value: string | Date): string {
 }
 
 export const isExternal = (url: string) => /^(https?:)?\/\//.test(url) || url.startsWith("mailto:");
+
+/** Pills for a paper: Project, then its other links, then (unless on the post itself) the blog post. */
+export function paperLinks(paper: Paper, { includePost = true } = {}) {
+  const { url, links, noteLabel } = paper.data;
+  return [
+    ...(url ? [{ label: "Project", url }] : []),
+    ...links,
+    ...(includePost ? [{ label: noteLabel ?? "Blog post", url: paperUrl(paper) }] : []),
+  ];
+}
+
+/** Where a paper's card and title link: its project website, else its blog post. */
+export const paperHref = (paper: Paper) => paper.data.url ?? paperUrl(paper);

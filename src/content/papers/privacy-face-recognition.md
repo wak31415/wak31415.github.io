@@ -1,5 +1,6 @@
 ---
 title: Privacy-preserving face recognition
+fullTitle: "Privacy-Preserving Face Recognition in Large Scale Video Surveillance Systems"
 shortTitle: Privacy-preserving recognition
 description: A plain-language explanation of William Koch's thesis on privacy-preserving face recognition.
 date: 2020-12-14

@@ -1,5 +1,6 @@
 ---
 title: Non-rigid NeRFs for VR video conferencing
+fullTitle: "Efficient Non-Rigid Neural Radiance Fields for Virtual Reality Video Conferencing"
 shortTitle: Non-rigid NeRFs
 headline: Non-rigid NeRFs for video conferencing
 description: A plain-language explanation of William Koch's thesis on non-rigid neural radiance fields.

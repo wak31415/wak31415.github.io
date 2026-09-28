@@ -20,7 +20,7 @@ Node 22.12 or newer is required.
 | Talks | `src/content/talks/*.md` |
 | "Recently" news list on the home page | `src/content/news.yaml` |
 | Home hero text, contact heading | `src/content/pages/home.md` |
-| CV | `src/content/pages/cv.md` |
+| CV (education, experience, skills, activities) | `src/content/cv.yaml` |
 | Name, email, navigation, social links | `src/site.config.ts` |
 | Images, videos, PDFs | `public/assets/`, `public/files/` |
 | Styles | `src/styles/site.css` |
@@ -37,6 +37,7 @@ Create `src/content/papers/<slug>.md`. The file name becomes the URL (`/papers/<
 ```md
 ---
 title: MyMethod
+fullTitle: "MyMethod: A Longer Paper Title"   # used on the CV; defaults to title
 headline: MyMethod, in plain language   # article <h1>; defaults to title
 shortTitle: MyMethod                    # used in prev/next links; defaults to title
 description: A plain-language explanation of MyMethod by William Koch.
@@ -52,8 +53,8 @@ authorsShort: Jane Doe*, William Koch*, and collaborators   # optional, papers p
 deck: The large intro sentence under the title.
 aside:
   text: The "In one sentence" box next to the article.
-links:
-  - { label: Project, url: "https://…" }
+url: https://mymethod.github.io/         # project website: the card image and title link here, and it's the first pill
+links:                                  # further pills, after "Project" and before "Blog post"
   - { label: arXiv, url: "https://arxiv.org/abs/…" }
   - { label: GitHub, url: "https://github.com/…" }
 card:                                   # image on the card
@@ -77,6 +78,8 @@ Plain-language article in Markdown. The first paragraph is set larger.
 > A blockquote at the end becomes the highlighted takeaway.
 ```
 
+Cards link to the project website (`url`) when there is one, and to the blog post otherwise. Pills appear in the order Project, then `links`, then Blog post; `noteLabel` renames the last one (SCION uses "View preview").
+
 Set `draft: true` to hide an entry without deleting it (works for papers, projects and talks).
 
 ### A project
@@ -96,6 +99,10 @@ The slug doubles as the anchor, so `/projects/#<slug>` links straight to the car
 ### A talk
 
 `src/content/talks/<slug>.md` needs `title`, `date`, and `venue`; `location` and `links` are optional, and the body is the description. It's reachable at `/talks/#<slug>`. The two 2021 talks migrated from the old site are marked `draft: true`; remove that line to publish them.
+
+### CV
+
+Edit `src/content/cv.yaml`. Education, experience, and activities are lists of entries with `period` (optional), `title`, `org` (optional), and `details` (optional list); they appear in the order written. The Publications section is generated from the papers, with your name in bold and full titles from `fullTitle`.
 
 ### News
 

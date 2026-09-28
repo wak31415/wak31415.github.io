@@ -1,5 +1,6 @@
 ---
 title: ScenarioControl
+fullTitle: "ScenarioControl: Vision-Language Controllable Vectorized Latent Scenario Generation"
 headline: ScenarioControl, in plain language
 description: A plain-language explanation of ScenarioControl by William Koch.
 date: 2026-04-18
@@ -14,8 +15,8 @@ authorsShort: Lili Gao*, Yanbo Xu*, William Koch*, and collaborators
 deck: How do you build a driving-scenario generator that listens to an image or a sentence without losing the precise structure a simulator needs?
 aside:
   text: ScenarioControl turns an image or text prompt into a structured, editable driving world—not just a video of one.
+url: https://princeton-computational-imaging.github.io/ScenarioControl/
 links:
-  - { label: Project, url: "https://princeton-computational-imaging.github.io/ScenarioControl/" }
   - { label: arXiv, url: "https://arxiv.org/abs/2604.17147" }
   - { label: GitHub, url: "https://github.com/princeton-computational-imaging/ScenarioControl/tree/main" }
 card:
