@@ -6,7 +6,7 @@ badge: Public beta
 url: https://github.com/wak31415/research-memory
 links:
   - { label: GitHub, url: "https://github.com/wak31415/research-memory" }
-order: 1
+order: 2
 featured: true
 media:
   type: image

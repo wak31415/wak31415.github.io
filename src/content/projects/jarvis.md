@@ -6,7 +6,7 @@ badge: In development
 url: https://github.com/wak31415/jarvis-voice-agent
 links:
   - { label: GitHub, url: "https://github.com/wak31415/jarvis-voice-agent" }
-order: 2
+order: 1
 featured: true
 media:
   type: flow
