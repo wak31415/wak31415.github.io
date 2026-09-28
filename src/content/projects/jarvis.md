@@ -3,6 +3,9 @@ title: Jarvis
 summary: A voice-first personal agent for spoken requests and hands-free tool use.
 meta: Voice agent · To be released
 badge: In development
+url: https://github.com/wak31415/jarvis-voice-agent
+links:
+  - { label: GitHub, url: "https://github.com/wak31415/jarvis-voice-agent" }
 order: 2
 featured: true
 media:
