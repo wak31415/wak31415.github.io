@@ -47,17 +47,17 @@ const projects = (await getProjects()).filter((project) => project.data.featured
       <div><p>Selected work</p><h2 id="papers-heading">Highlighted papers</h2></div>
       <a class="button-link" href="/papers/">Explore all papers <span aria-hidden="true">→</span></a>
     </div>
-    <div class="card-grid paper-grid">
+    <div class="card-grid">
       {papers.map((paper) => <PaperCard paper={paper} variant="overview" />)}
     </div>
   </section>
 
   <section class="section-block projects-preview" aria-labelledby="projects-heading">
     <div class="section-heading">
-      <div><p>Earlier investigations</p><h2 id="projects-heading">Highlighted projects</h2></div>
+      <div><p>Software &amp; experiments</p><h2 id="projects-heading">Highlighted projects</h2></div>
       <a class="button-link" href="/projects/">Explore projects <span aria-hidden="true">→</span></a>
     </div>
-    <div class="card-grid project-grid">
+    <div class="card-grid">
       {projects.map((project) => <ProjectCard project={project} variant="overview" />)}
     </div>
   </section>

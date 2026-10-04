@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import Article from "../../layouts/Article.astro";
+import { getProjects, projectLinks, projectUrl, type Project } from "../../lib/content";
+
+export const getStaticPaths = (async () => {
+  const projects = (await getProjects()).filter((project) => project.data.article);
+  return projects.map((project, index) => ({
+    params: { id: project.id },
+    props: { project, previous: projects[index - 1], next: projects[index + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  project: Project;
+  previous?: Project;
+  next?: Project;
+}
+
+const { project, previous, next } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const navLink = (entry?: Project) =>
+  entry && { label: entry.data.shortTitle ?? entry.data.title, url: projectUrl(entry) };
+---
+
+<Article
+  headline={data.title}
+  description={data.description ?? data.summary}
+  meta={data.meta}
+  deck={data.deck}
+  hero={data.hero}
+  aside={data.aside}
+  links={projectLinks(project, { includePost: false })}
+  index={{ url: "/projects/", label: "projects" }}
+  previous={navLink(previous)}
+  next={navLink(next)}
+>
+  <Content />
+</Article>

@@ -5,7 +5,7 @@ import { paperHref, paperLinks, type Paper } from "../lib/content";
 
 interface Props {
   paper: Paper;
-  /** "overview": compact card for the home page · "catalog": papers page, with topic and authors */
+  /** "overview": home page, with venue · "catalog": papers page, with topic */
   variant: "overview" | "catalog";
 }
 
@@ -13,7 +13,7 @@ const { paper, variant } = Astro.props;
 const { data } = paper;
 const href = paperHref(paper);
 const meta = variant === "overview" ? data.venue : (data.topic ?? data.venue);
-const authors = variant === "catalog" ? (data.authorsShort ?? data.authors) : undefined;
+const authors = data.authorsShort ?? data.authors;
 ---
 
 <article class="feature-card">

@@ -2,26 +2,27 @@
 import { render } from "astro:content";
 import CardMedia from "./CardMedia.astro";
 import LinkPills from "./LinkPills.astro";
-import type { Project } from "../lib/content";
+import { projectLinks, projectUrl, type Project } from "../lib/content";
 
 interface Props {
   project: Project;
-  /** "overview" shows the short summary; "catalog" shows the Markdown body. */
+  /** "overview" shows the short summary; "catalog" shows the Markdown body, unless it is a write-up. */
   variant: "overview" | "catalog";
 }
 
 const { project, variant } = Astro.props;
 const { data } = project;
 const { Content } = await render(project);
-const showBody = variant === "catalog" && Boolean(project.body?.trim());
+const href = data.url ?? (data.article ? projectUrl(project) : undefined);
+const showBody = variant === "catalog" && !data.article && Boolean(project.body?.trim());
 ---
 
 <article class="feature-card" id={variant === "catalog" ? project.id : undefined}>
-  <CardMedia media={data.media} badge={data.badge} href={data.url} label={`Open ${data.title}`} />
+  <CardMedia media={data.media} badge={data.badge} href={href} label={`Open ${data.title}`} />
   <div class="card-body">
     <p class="meta">{data.meta}</p>
-    <h3>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</h3>
+    <h3>{href ? <a href={href}>{data.title}</a> : data.title}</h3>
     {showBody ? <Content /> : <p>{data.summary}</p>}
-    <LinkPills links={data.links} />
+    <LinkPills links={projectLinks(project)} label={`${data.title} links`} />
   </div>
 </article>

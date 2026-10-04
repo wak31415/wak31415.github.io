@@ -1,10 +1,14 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { satteri } from "@astrojs/markdown-satteri";
+import { katexPlugin } from "./src/lib/katex.ts";
 
 export default defineConfig({
   site: "https://www.william-koch.com",
   build: { format: "directory" },
   devToolbar: { enabled: false },
+  // $inline$ and $$display$$ math in Markdown; the Article layout loads katex.min.css.
+  markdown: { processor: satteri({ features: { math: true }, hastPlugins: [katexPlugin] }) },
   // Old Jekyll URLs that may still be linked from elsewhere.
   redirects: {
     "/research/": "/",

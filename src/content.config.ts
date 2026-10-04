@@ -96,10 +96,30 @@ const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
     title: z.string(),
+    /** Used in previous/next links between write-ups. Defaults to `title`. */
+    shortTitle: z.string().optional(),
     /** Short description for the overview page. The Markdown body is used on the projects page. */
     summary: z.string(),
+    /** Card meta line, also shown above the write-up title. */
     meta: z.string(),
     badge: z.string(),
+    /** "earlier" projects are listed in their own section below the current ones. */
+    section: z.enum(["current", "earlier"]).default("current"),
+    /** Render the Markdown body as its own page at /projects/<id>/. The card then shows `summary` and links there. */
+    article: z.boolean().default(false),
+    /** Write-up only: search-engine / link-preview description. Defaults to `summary`. */
+    description: z.string().optional(),
+    /** Write-up only: large intro sentence under the title. */
+    deck: z.string().optional(),
+    /** Write-up only: sidebar note next to the body. */
+    aside: z
+      .object({
+        label: z.string().default("In one sentence"),
+        text: z.string(),
+      })
+      .optional(),
+    hero: image.optional(),
+    /** Card image and title link here, falling back to the write-up. */
     url: z.url().optional(),
     links: z.array(link).default([]),
     /** Lower numbers come first. */

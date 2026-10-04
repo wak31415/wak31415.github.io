@@ -1,11 +1,8 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
-import Base from "../../layouts/Base.astro";
-import ArticleHero from "../../components/ArticleHero.astro";
-import LinkPills from "../../components/LinkPills.astro";
+import Article from "../../layouts/Article.astro";
 import { getPapers, paperLinks, paperUrl, type Paper } from "../../lib/content";
-import { site } from "../../site.config";
 
 export const getStaticPaths = (async () => {
   const papers = await getPapers();
@@ -24,54 +21,21 @@ interface Props {
 const { paper, previous, next } = Astro.props;
 const { data } = paper;
 const { Content } = await render(paper);
-const headline = data.headline ?? data.title;
-const meta = data.articleMeta ?? [data.venue, data.topic].filter(Boolean).join(" · ");
-const links = paperLinks(paper, { includePost: false });
-const shortTitle = (entry: Paper) => entry.data.shortTitle ?? entry.data.title;
+const navLink = (entry?: Paper) => entry && { label: entry.data.shortTitle ?? entry.data.title, url: paperUrl(entry) };
 ---
 
-<Base fullTitle={`${headline} — ${site.name}`} description={data.description} mainId="article">
-  <header class="article-header">
-    <div>
-      <a class="back-link" href="/papers/">← All papers</a>
-      <p class="meta">{meta}</p>
-      <h1>{headline}</h1>
-      {data.deck && <p class="article-deck">{data.deck}</p>}
-      {data.authors && <p class="article-authors">{data.authors}</p>}
-    </div>
-  </header>
-
-  {data.hero && <ArticleHero media={data.hero} />}
-
-  <div class="article-layout">
-    {
-      (data.aside || links.length > 0) && (
-        <aside class="article-aside">
-          {data.aside && (
-            <>
-              <p>{data.aside.label}</p>
-              <p class="one-sentence">{data.aside.text}</p>
-            </>
-          )}
-          <LinkPills links={links} />
-        </aside>
-      )
-    }
-    <article class="article-prose">
-      <Content />
-    </article>
-  </div>
-
-  <nav class="article-next" aria-label="More papers">
-    {
-      previous ? (
-        <a href={paperUrl(previous)}>← {shortTitle(previous)}</a>
-      ) : (
-        <a href="/papers/">← Back to papers</a>
-      )
-    }
-    {next ? <a href={paperUrl(next)}>Next: {shortTitle(next)} →</a> : <a href="/papers/">All papers →</a>}
-  </nav>
-
-  <a slot="footer" href={`mailto:${site.email}`}>Discuss this work</a>
-</Base>
+<Article
+  headline={data.headline ?? data.title}
+  description={data.description}
+  meta={data.articleMeta ?? [data.venue, data.topic].filter(Boolean).join(" · ")}
+  deck={data.deck}
+  authors={data.authors}
+  hero={data.hero}
+  aside={data.aside}
+  links={paperLinks(paper, { includePost: false })}
+  index={{ url: "/papers/", label: "papers" }}
+  previous={navLink(previous)}
+  next={navLink(next)}
+>
+  <Content />
+</Article>

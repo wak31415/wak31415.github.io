@@ -61,3 +61,11 @@ export function paperLinks(paper: Paper, { includePost = true } = {}) {
 
 /** Where a paper's card and title link: its project website, else its blog post. */
 export const paperHref = (paper: Paper) => paper.data.url ?? paperUrl(paper);
+
+export const projectUrl = (project: Project) => `/projects/${project.id}/`;
+
+/** Pills for a project: its links, then (unless on the write-up itself) the write-up. */
+export function projectLinks(project: Project, { includePost = true } = {}) {
+  const { links, article } = project.data;
+  return [...links, ...(article && includePost ? [{ label: "Write-up", url: projectUrl(project) }] : [])];
+}

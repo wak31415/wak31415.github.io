@@ -7,6 +7,7 @@ featured: true
 badge: NeurIPS 2026
 venue: NeurIPS 2026
 articleMeta: NeurIPS 2026 · Details forthcoming
+authors: William Koch, Amogh Joshi, Cyrus Vaccha, Cheng Zheng, Felix Heide
 summary: Project details will be published with the accompanying website.
 deck: An early visual preview. The full project page and paper details will be published with the accompanying website.
 aside:

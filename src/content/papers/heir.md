@@ -10,7 +10,7 @@ badge: NeurIPS 2025
 venue: NeurIPS 2025
 topic: Geometric learning
 summary: Learning graph-based motion hierarchies directly from observed dynamics.
-authors: Cheng Zheng*, William Koch*, Baiang Li, Felix Heide
+authors: William Koch*, Cheng Zheng*, Baiang Li, Felix Heide
 deck: Complex motion often has a hidden family tree. HEIR learns that tree from the motion itself.
 aside:
   text: HEIR discovers which moving parts should inherit motion from which other parts, without being given a skeleton in advance.
