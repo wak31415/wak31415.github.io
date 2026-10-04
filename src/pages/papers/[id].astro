@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import Article from "../../layouts/Article.astro";
+import { getPapers, paperLinks, paperUrl, type Paper } from "../../lib/content";
+
+export const getStaticPaths = (async () => {
+  const papers = await getPapers();
+  return papers.map((paper, index) => ({
+    params: { id: paper.id },
+    props: { paper, previous: papers[index - 1], next: papers[index + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  paper: Paper;
+  previous?: Paper;
+  next?: Paper;
+}
+
+const { paper, previous, next } = Astro.props;
+const { data } = paper;
+const { Content } = await render(paper);
+const navLink = (entry?: Paper) => entry && { label: entry.data.shortTitle ?? entry.data.title, url: paperUrl(entry) };
+---
+
+<Article
+  headline={data.headline ?? data.title}
+  description={data.description}
+  meta={data.articleMeta ?? [data.venue, data.topic].filter(Boolean).join(" · ")}
+  deck={data.deck}
+  authors={data.authors}
+  hero={data.hero}
+  aside={data.aside}
+  links={paperLinks(paper, { includePost: false })}
+  index={{ url: "/papers/", label: "papers" }}
+  previous={navLink(previous)}
+  next={navLink(next)}
+>
+  <Content />
+</Article>

@@ -1,0 +1,27 @@
+---
+import type { Paper } from "../lib/content";
+
+interface Props {
+  media: NonNullable<Paper["data"]["hero"]>;
+}
+
+const { media } = Astro.props;
+---
+
+{
+  media.type === "video" ? (
+    <figure class="article-hero video-hero">
+      <video controls autoplay muted loop playsinline poster={media.poster}>
+        <source src={media.src} type={`video/${media.src.endsWith(".webm") ? "webm" : "mp4"}`} />
+        Your browser does not support embedded video.
+      </video>
+    </figure>
+  ) : (
+    <figure
+      class:list={["article-hero", media.fit !== "cover" && `fit-${media.fit}`]}
+      style={media.background ? `background: ${media.background}` : undefined}
+    >
+      <img src={media.src} alt={media.alt} width={media.width} height={media.height} />
+    </figure>
+  )
+}

@@ -1,0 +1,35 @@
+---
+import { formatMonth, type NewsItem } from "../lib/content";
+
+interface Props {
+  items: NewsItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="news-list">
+  {
+    items.map(({ data }) => {
+      const body = (
+        <span>
+          <strong>{data.title}</strong>
+          {data.text && <small>{data.text}</small>}
+        </span>
+      );
+      return (
+        <li class="news-item">
+          <time datetime={data.date}>{formatMonth(data.date)}</time>
+          {data.link ? (
+            <a class="news-link" href={data.link}>
+              {body}
+              <b aria-hidden="true">↗</b>
+            </a>
+          ) : (
+            <div class="news-copy">{body}</div>
+          )}
+        </li>
+      );
+    })
+  }
+</ol>

@@ -1,0 +1,27 @@
+# Newest first is not required; entries are sorted by date. The overview page shows the latest five.
+# date: YYYY-MM or YYYY-MM-DD · link: a page on this site or a full URL (optional)
+
+- date: 2026-09
+  title: SCION accepted at NeurIPS 2026
+  text: Project details and paper to follow.
+  link: /papers/scion/
+
+- date: 2026-09
+  title: Keryx released
+  text: My voice agent harness, previously Jarvis, is now open source.
+  link: /projects/#keryx
+
+- date: 2026-08
+  title: Research Memory presented at the Agentic AI Summit
+  text: Berkeley, California.
+  link: /projects/#research-memory
+
+- date: 2026-06
+  title: ScenarioControl accepted at ECCV
+  text: Vision-language controllable scenario generation.
+  link: /papers/scenario-control/
+
+- date: 2026-02
+  title: Research Automation talk at PIXL
+  text: A presentation on research automation and agent-assisted workflows.
+  link: /talks/#research-automation-pixl

@@ -1,0 +1,28 @@
+---
+import CardMedia from "./CardMedia.astro";
+import LinkPills from "./LinkPills.astro";
+import { paperHref, paperLinks, type Paper } from "../lib/content";
+
+interface Props {
+  paper: Paper;
+  /** "overview": home page, with venue · "catalog": papers page, with topic */
+  variant: "overview" | "catalog";
+}
+
+const { paper, variant } = Astro.props;
+const { data } = paper;
+const href = paperHref(paper);
+const meta = variant === "overview" ? data.venue : (data.topic ?? data.venue);
+const authors = data.authorsShort ?? data.authors;
+---
+
+<article class="feature-card">
+  <CardMedia media={data.card} badge={data.badge} href={href} label={`Open ${data.title}`} />
+  <div class="card-body">
+    <p class="meta">{meta}</p>
+    <h3><a href={href}>{data.title}</a></h3>
+    <p>{data.summary}</p>
+    {authors && <p class="card-authors">{authors}</p>}
+    <LinkPills links={paperLinks(paper)} label={`${data.title} links`} />
+  </div>
+</article>

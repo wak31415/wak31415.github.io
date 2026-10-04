@@ -1,0 +1,37 @@
+---
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { getProjects } from "../../lib/content";
+
+const projects = await getProjects();
+const current = projects.filter((project) => project.data.section === "current");
+const earlier = projects.filter((project) => project.data.section === "earlier");
+---
+
+<Base title="Projects" description="Selected projects by William Koch.">
+  <header class="page-intro">
+    <div>
+      <p class="eyebrow">Software & experiments</p>
+      <h1>Projects</h1>
+      <p>Tools I build to make research agents more useful, personal, and connected to the way I already work.</p>
+    </div>
+  </header>
+  <section class="section-block paper-catalog">
+    <div class="card-grid">
+      {current.map((project) => <ProjectCard project={project} variant="catalog" />)}
+    </div>
+  </section>
+
+  {
+    earlier.length > 0 && (
+      <section class="section-block paper-catalog preprints" aria-labelledby="earlier-heading">
+        <div class="section-heading">
+          <div><p>Coursework & side projects</p><h2 id="earlier-heading">Earlier projects</h2></div>
+        </div>
+        <div class="card-grid">
+          {earlier.map((project) => <ProjectCard project={project} variant="catalog" />)}
+        </div>
+      </section>
+    )
+  }
+</Base>

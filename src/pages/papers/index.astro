@@ -1,0 +1,48 @@
+---
+import Base from "../../layouts/Base.astro";
+import PaperCard from "../../components/PaperCard.astro";
+import { getPapers } from "../../lib/content";
+
+const papers = await getPapers();
+const publications = papers.filter((paper) => paper.data.section === "publications");
+const earlier = papers.filter((paper) => paper.data.section === "earlier");
+---
+
+<Base title="Papers" description="Publications and research by William Koch.">
+  <header class="page-intro">
+    <div>
+      <p class="eyebrow">Research</p>
+      <h1>Papers</h1>
+      <p>
+        Work on learned structure for graphics, vision, and generative world models. Links go to the paper, project
+        page, and code when available.
+      </p>
+    </div>
+  </header>
+
+  {
+    publications.length > 0 && (
+      <section class="section-block paper-catalog" aria-labelledby="published-heading">
+        <div class="section-heading">
+          <div><p>Peer reviewed</p><h2 id="published-heading">Publications</h2></div>
+        </div>
+        <div class="card-grid">
+          {publications.map((paper) => <PaperCard paper={paper} variant="catalog" />)}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    earlier.length > 0 && (
+      <section class="section-block paper-catalog preprints" aria-labelledby="preprints-heading">
+        <div class="section-heading">
+          <div><p>Preprints & theses</p><h2 id="preprints-heading">Earlier work</h2></div>
+        </div>
+        <div class="card-grid">
+          {earlier.map((paper) => <PaperCard paper={paper} variant="catalog" />)}
+        </div>
+      </section>
+    )
+  }
+</Base>

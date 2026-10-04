@@ -1,0 +1,86 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import NewsList from "../components/NewsList.astro";
+import PaperCard from "../components/PaperCard.astro";
+import Portrait from "../components/Portrait.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getNews, getPage, getPapers, getProjects } from "../lib/content";
+import { site } from "../site.config";
+
+const home = await getPage("home");
+const { Content: Bio } = await render(home);
+const news = (await getNews()).slice(0, site.newsLimit);
+const papers = (await getPapers()).filter((paper) => paper.data.featured);
+const projects = (await getProjects()).filter((project) => project.data.featured);
+---
+
+<Base>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">{home.data.eyebrow}</p>
+      <h1>{home.data.title}</h1>
+      <p class="hero-line">{home.data.tagline}</p>
+      <div class="hero-bio"><Bio /></div>
+      <div class="hero-links">
+        <a class="text-link" href="/papers/">See my work <span aria-hidden="true">→</span></a>
+        <a class="text-link quiet" href={`mailto:${site.email}`}>Get in touch</a>
+      </div>
+    </div>
+    <Portrait />
+  </section>
+
+  {
+    news.length > 0 && (
+      <section class="news" aria-labelledby="news-heading">
+        <div class="news-intro">
+          <p>Updates</p>
+          <h2 id="news-heading">Recently</h2>
+        </div>
+        <NewsList items={news} />
+      </section>
+    )
+  }
+
+  <section class="section-block" aria-labelledby="papers-heading">
+    <div class="section-heading">
+      <div><p>Selected work</p><h2 id="papers-heading">Highlighted papers</h2></div>
+      <a class="button-link" href="/papers/">Explore all papers <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="card-grid">
+      {papers.map((paper) => <PaperCard paper={paper} variant="overview" />)}
+    </div>
+  </section>
+
+  <section class="section-block projects-preview" aria-labelledby="projects-heading">
+    <div class="section-heading">
+      <div><p>Software &amp; experiments</p><h2 id="projects-heading">Highlighted projects</h2></div>
+      <a class="button-link" href="/projects/">Explore projects <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="card-grid">
+      {projects.map((project) => <ProjectCard project={project} variant="overview" />)}
+    </div>
+  </section>
+
+  {
+    home.data.contact && (
+      <section class="contact-panel" aria-labelledby="contact-heading">
+        <div>
+          <p>{home.data.contact.eyebrow}</p>
+          <h2 id="contact-heading">{home.data.contact.heading}</h2>
+        </div>
+        <div class="contact-links">
+          {site.social.map(({ label, handle, url }) => (
+            <a href={url}>
+              <span>{label}</span>
+              <small>{handle}</small>
+              <b aria-hidden="true">↗</b>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <span slot="footer">Static pages · interactive 3D portrait</span>
+</Base>

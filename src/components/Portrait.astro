@@ -1,0 +1,50 @@
+---
+// Interactive Gaussian-splat portrait. The renderer lives in /avatar/ (src/pages/avatar.astro) and is embedded as an
+// iframe; the fallback image shows if it hasn't reported "avatar-ready" after a few seconds, and on small screens.
+---
+
+<figure class="neural-portrait">
+  <div class="portrait-frame">
+    <img
+      class="portrait-fallback"
+      src="/assets/avatar/william-user-mesh-avatar.webp"
+      alt="Portrait of William Koch with a geometric mesh treatment"
+      width="1254"
+      height="1254"
+    />
+    <iframe class="portrait-splat" src="/avatar/" title="Interactive 3D Gaussian portrait of William Koch" loading="eager"
+    ></iframe>
+  </div>
+</figure>
+
+<script>
+  const hero = document.querySelector<HTMLElement>(".hero");
+  const portrait = document.querySelector<HTMLIFrameElement>(".portrait-splat");
+  const portraitFrame = document.querySelector<HTMLElement>(".portrait-frame");
+  const portraitFallbackTimer = setTimeout(() => portraitFrame?.classList.add("is-fallback"), 4500);
+
+  addEventListener("message", (event) => {
+    if (event.origin !== location.origin || event.data !== "avatar-ready") return;
+    clearTimeout(portraitFallbackTimer);
+    portraitFrame?.classList.remove("is-fallback");
+    portraitFrame?.classList.add("is-ready");
+  });
+
+  const sendAvatarPointer = (x: number, y: number) => {
+    portrait?.contentWindow?.postMessage({ type: "avatar-pointer", x, y }, location.origin);
+  };
+
+  hero?.addEventListener(
+    "pointermove",
+    (event) => {
+      if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      const bounds = hero.getBoundingClientRect();
+      const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width) * 2 - 1));
+      const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height) * 2 - 1));
+      sendAvatarPointer(x, y);
+    },
+    { passive: true },
+  );
+
+  hero?.addEventListener("pointerleave", () => sendAvatarPointer(0, 0));
+</script>

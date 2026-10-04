@@ -1,0 +1,67 @@
+---
+import type { ComponentProps } from "astro/types";
+import "katex/dist/katex.min.css";
+import Base from "./Base.astro";
+import ArticleHero from "../components/ArticleHero.astro";
+import LinkPills from "../components/LinkPills.astro";
+import { site } from "../site.config";
+
+type Link = { label: string; url: string };
+
+interface Props {
+  headline: string;
+  description: string;
+  meta: string;
+  deck?: string;
+  authors?: string;
+  hero?: ComponentProps<typeof ArticleHero>["media"];
+  aside?: { label: string; text: string };
+  links: Link[];
+  /** Where "← All …" and the fallback previous/next links point. */
+  index: { url: string; label: string };
+  previous?: Link;
+  next?: Link;
+}
+
+const { headline, description, meta, deck, authors, hero, aside, links, index, previous, next } = Astro.props;
+---
+
+<Base fullTitle={`${headline} — ${site.name}`} description={description} mainId="article">
+  <header class="article-header">
+    <div>
+      <a class="back-link" href={index.url}>← All {index.label}</a>
+      <p class="meta">{meta}</p>
+      <h1>{headline}</h1>
+      {deck && <p class="article-deck">{deck}</p>}
+      {authors && <p class="article-authors">{authors}</p>}
+    </div>
+  </header>
+
+  {hero && <ArticleHero media={hero} />}
+
+  <div class="article-layout">
+    {
+      (aside || links.length > 0) && (
+        <aside class="article-aside">
+          {aside && (
+            <>
+              <p>{aside.label}</p>
+              <p class="one-sentence">{aside.text}</p>
+            </>
+          )}
+          <LinkPills links={links} />
+        </aside>
+      )
+    }
+    <article class="article-prose">
+      <slot />
+    </article>
+  </div>
+
+  <nav class="article-next" aria-label={`More ${index.label}`}>
+    {previous ? <a href={previous.url}>← {previous.label}</a> : <a href={index.url}>← Back to {index.label}</a>}
+    {next ? <a href={next.url}>Next: {next.label} →</a> : <a href={index.url}>All {index.label} →</a>}
+  </nav>
+
+  <a slot="footer" href={`mailto:${site.email}`}>Discuss this work</a>
+</Base>

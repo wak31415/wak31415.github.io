@@ -1,0 +1,94 @@
+# The CV page (/cv/). Entries appear in the order written here.
+# Each entry: period (optional), title, org (optional), details (optional list).
+# Publications are generated from src/content/papers.
+
+intro: Education, publications, research and industry experience, and activities.
+
+current:
+  label: Currently
+  text: PhD candidate at Princeton University, advised by Felix Heide.
+
+education:
+  - period: 2025 – present
+    title: Ph.D. in Computer Science
+    org: Princeton University
+  - period: 2022 – 2023
+    title: M.Sc. in Advanced Computer Science
+    org: University of Oxford
+  - period: 2018 – 2021
+    title: B.Sc. in Mathematics & Computer Science
+    org: École Polytechnique
+  - period: 2019
+    title: International Honors Program
+    org: Stanford University
+
+experience:
+  - period: Aug 2025 – present
+    title: PhD Candidate
+    org: Princeton University
+    details:
+      - Research on Gaussian splatting and unsupervised structure recognition, advised by Felix Heide.
+  - period: Nov 2023 – Jul 2025
+    title: Associate
+    org: Boston Consulting Group GmbH
+  - period: 2023
+    title: ML Research Intern
+    org: Active Vision Lab, University of Oxford
+    details:
+      - Research on non-rigid neural radiance fields for virtual-reality video conferencing with the Department of Engineering; supervised by Ismail Ceylan, Victor Prisacariu, and Philip Torr.
+      - Developed an efficient novel-pose and view synthesis model that turns standard webcam input into new perspectives of the person in front of the camera.
+      - Proposed a lightweight preprocessing stage for training and inference that uses existing priors to optimize ray sampling for real-time performance.
+  - period: 2022
+    title: Applied Science Intern
+    org: Zalando Switzerland AG
+    details:
+      - Designed and implemented generative adversarial networks; initiated and ran experiments on unsupervised image inpainting.
+      - Contributed to the architecture of 3D generative models trained without 3D data by leveraging suggestive contours.
+      - Improved the performance of existing image tooling and extended a shared preprocessing library (semantic segmentation, dense UV unwrapping of humans).
+      - Built an application for automatically generating datasets of model images with desired attributes.
+  - period: 2021
+    title: Consulting Intern
+    org: d-fine GmbH
+    details:
+      - Six-month internship on two projects, sustainable urban transport and decentralized cloud infrastructure using distributed ledger technologies.
+  - period: 2020
+    title: Cryptography Research Intern
+    org: Télécom Paris
+    details:
+      - Thesis on privacy-preserving face recognition for large-scale video surveillance using secure multi-party computation; proposed a framework that makes mass surveillance cryptographically impossible, with performance limitations.
+  - period: 2020
+    title: Cryptography Research Intern
+    org: Deutsche Bank AG
+    details:
+      - Researched machine learning on encrypted data using homomorphic encryption and implemented a proof of concept.
+
+skills:
+  - label: Programming
+    value: C, C++, CUDA C/C++, Python, Rust
+  - label: Languages
+    value: English (native), German (native), French (B2–C1)
+
+activities:
+  - title: Scholar
+    org: Studienstiftung des deutschen Volkes
+    details:
+      - Scholarship spokesperson for the Paris region (2019 – 2020).
+      - Organized a one-week academy on state surveillance, filter bubbles, and big data (April 2022) with a budget of nearly $40,000, 80 participants, 6 researchers, and further speakers.
+      - Organized and moderated events on educational equality and digital independence.
+  - period: Jan 2019 – Jun 2021
+    title: Founder and President
+    org: Privacy Club, École Polytechnique
+  - period: Mar – Jun 2021
+    title: Co-Founder and Secretary
+    org: IEEE Student Branch, École Polytechnique
+  - period: Dec 2020 – Jun 2021
+    title: Communication
+    org: Robotics Club, École Polytechnique
+  - title: Software Developer, DESTINY
+    org: REXUS/BEXUS student research program, École Polytechnique
+    details:
+      - Detection of Earthquakes through a STratospheric INfrasound studY; voluntary student research project.
+  - title: Contributor
+    org: Binet Réseau (IT club), École Polytechnique
+    details:
+      - Projects including a self-hosted XMPP server and Nextcloud instance for students.

@@ -1,0 +1,44 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import LinkPills from "../../components/LinkPills.astro";
+import { formatMonth, getTalks } from "../../lib/content";
+
+const talks = await Promise.all(
+  (await getTalks()).map(async (talk) => ({ talk, Content: (await render(talk)).Content })),
+);
+---
+
+<Base title="Talks" description="Talks and presentations by William Koch.">
+  <header class="page-intro">
+    <div>
+      <p class="eyebrow">Presentations</p>
+      <h1>Talks</h1>
+      <p>Invited talks, conference presentations, and teaching material.</p>
+    </div>
+  </header>
+  {
+    talks.length > 0 ? (
+      <section class="section-block talks-list" aria-label="Talks">
+        {talks.map(({ talk, Content }) => (
+          <article class="talk-entry" id={talk.id}>
+            <div>
+              <p class="meta">
+                {[formatMonth(talk.data.date), talk.data.venue, talk.data.location].filter(Boolean).join(" · ")}
+              </p>
+              <h2>{talk.data.title}</h2>
+            </div>
+            <div class="talk-body">
+              <Content />
+              <LinkPills links={talk.data.links} />
+            </div>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <section class="section-block talks-empty">
+        <p>Talks will be listed here.</p>
+      </section>
+    )
+  }
+</Base>

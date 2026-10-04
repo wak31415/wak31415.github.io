@@ -1,41 +1,127 @@
+# william-koch.com
 
-# Academic Pages
+Personal research website, built with [Astro](https://astro.build). Content lives in Markdown/YAML files; pages and cards are generated from them.
 
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
+```sh
+npm install
+npm run dev        # http://localhost:4321, reloads on save
+npm test           # type-check + build + verify every internal link/image/anchor
+npm run preview    # serve the production build from dist/
+```
 
-Academic Pages is a Github Pages template for academic websites.
+Node 22.12 or newer is required.
 
+## Where things live
 
-# Getting Started
+| What | File(s) |
+| --- | --- |
+| Papers (cards + plain-language article pages) | `src/content/papers/*.md` |
+| Projects | `src/content/projects/*.md` |
+| Talks | `src/content/talks/*.md` |
+| "Recently" news list on the home page | `src/content/news.yaml` |
+| Home hero text, contact heading | `src/content/pages/home.md` |
+| CV (education, experience, skills, activities) | `src/content/cv.yaml` |
+| Name, email, navigation, social links | `src/site.config.ts` |
+| Images, videos, PDFs | `public/assets/`, `public/files/` |
+| Styles | `src/styles/site.css` |
+| Page templates / components | `src/pages/`, `src/components/`, `src/layouts/` |
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+Every field is described and validated in `src/content.config.ts`. A typo in a field name or a media path that doesn't exist in `public/` fails the build with a message naming the file.
 
-See more info at https://academicpages.github.io/
+## Adding content
 
-## Running Locally
+### A paper
 
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+Create `src/content/papers/<slug>.md`. The file name becomes the URL (`/papers/<slug>/`). Papers are ordered by `date`, newest first; that order also drives the previous/next links between articles.
 
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed: `sudo apt install ruby-dev ruby-bundler nodejs`
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+```md
+---
+title: MyMethod
+fullTitle: "MyMethod: A Longer Paper Title"   # used on the CV; defaults to title
+headline: MyMethod, in plain language   # article <h1>; defaults to title
+shortTitle: MyMethod                    # used in prev/next links; defaults to title
+description: A plain-language explanation of MyMethod by William Koch.
+date: 2027-03-01
+section: publications                   # publications | earlier (preprints & theses)
+featured: true                          # show on the home page
+badge: CVPR 2027                        # frosted label on the card image
+venue: CVPR 2027                        # card meta line on the home page
+topic: Neural rendering                 # card meta line on the papers page (defaults to venue)
+summary: One sentence for the card.
+authors: Jane Doe*, William Koch*, Felix Heide
+authorsShort: Jane Doe*, William Koch*, and collaborators   # optional, papers page only
+deck: The large intro sentence under the title.
+aside:
+  text: The "In one sentence" box next to the article.
+url: https://mymethod.github.io/         # project website: the card image and title link here, and it's the first pill
+links:                                  # further pills, after "Project" and before "Blog post"
+  - { label: arXiv, url: "https://arxiv.org/abs/…" }
+  - { label: GitHub, url: "https://github.com/…" }
+card:                                   # image on the card
+  type: image                           # or: type: video, src: /assets/video/x.mp4, poster: /assets/x.webp
+  src: /assets/mymethod-teaser.webp
+  alt: Describe the figure
+  width: 1600
+  height: 900
+  fit: cover                            # cover | contain (whole figure on a light panel) | document (a page/cover on a colored background)
+  background: "#15274b"                 # optional
+hero:                                   # optional large figure on the article page, same fields as card
+  type: image
+  src: /assets/mymethod-results.webp
+  alt: …
+---
 
+Plain-language article in Markdown. The first paragraph is set larger.
 
-# Maintenance 
+## Section heading
 
-Bug reports and feature requests to the template  should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+> A blockquote at the end becomes the highlighted takeaway.
+```
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
+Cards link to the project website (`url`) when there is one, and to the blog post otherwise. Pills appear in the order Project, then `links`, then Blog post; `noteLabel` renames the last one (SCION uses "View preview").
 
-## Bugfixes and enhancements
+Set `draft: true` to hide an entry without deleting it (works for papers, projects and talks).
 
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
+### A project
 
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+`src/content/projects/<slug>.md`: the Markdown body is the description on the projects page, and `summary` is the shorter text on the home page. Projects are sorted by `order`. `media` is an image (same fields as above) or an abstract placeholder:
+
+```yaml
+media:
+  type: flow
+  steps: [listen, reason, act]
+  label: Abstract voice pipeline reading listen, reason, act
+  theme: teal          # teal | sand
+```
+
+The slug doubles as the anchor, so `/projects/#<slug>` links straight to the card.
+
+### A talk
+
+`src/content/talks/<slug>.md` needs `title`, `date`, and `venue`; `location` and `links` are optional, and the body is the description. It's reachable at `/talks/#<slug>`. The two 2021 talks migrated from the old site are marked `draft: true`; remove that line to publish them.
+
+### CV
+
+Edit `src/content/cv.yaml`. Education, experience, and activities are lists of entries with `period` (optional), `title`, `org` (optional), and `details` (optional list); they appear in the order written. The Publications section is generated from the papers, with your name in bold and full titles from `fullTitle`.
+
+### News
+
+Add an entry to `src/content/news.yaml`. It is sorted by date, and the home page shows the latest five (`newsLimit` in `src/site.config.ts`).
+
+```yaml
+- date: 2027-03
+  title: MyMethod accepted at CVPR
+  text: Optional second line.
+  link: /papers/mymethod/
+```
+
+## Deployment
+
+`.github/workflows/deploy.yml` builds, tests, and deploys to GitHub Pages on every push to `master`, and builds and tests every pull request. For the first deployment, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. The custom domain is kept by `public/CNAME`.
+
+Old Jekyll URLs (`/publications/`, `/resume/`, `/papers/2025-10-30-HEIR/`, …) redirect to their new pages; see `redirects` in `astro.config.mjs`.
+
+## Notes
+
+- **Interactive portrait.** `src/pages/avatar.astro` renders the Gaussian splat in `public/assets/avatar/` with the vendored three.js and Spark modules in `public/assets/vendor/`. It is embedded as an iframe by `src/components/Portrait.astro`, and a still image is shown on small screens or when WebGL fails. Splat generation and video conversion happen outside the site build. The splat was produced with Apple's SHARP model, whose checkpoint is licensed for research use only (see `public/assets/avatar/*.json`). Keep the vendor license files.
+- **Content safety.** This repository is public, including branches. The SCION entry contains only the approved placeholder and teaser assets. Never commit confidential manuscripts or unpublished details without explicit approval.

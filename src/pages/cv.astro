@@ -1,0 +1,153 @@
+---
+import { getEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import CvEntry from "../components/CvEntry.astro";
+import LinkPills from "../components/LinkPills.astro";
+import { getPapers, paperHref, paperLinks, type Paper } from "../lib/content";
+import { site } from "../site.config";
+
+const cv = (await getEntry("cv", "cv"))!.data;
+const papers = await getPapers();
+
+/** Author list with my own name emphasized. */
+const authorParts = (authors: string) =>
+  authors.split(new RegExp(`(${site.name}\\*?)`)).map((text) => ({ text, me: text.startsWith(site.name) }));
+const paperByline = ({ data }: Paper) => data.authors ?? (data.venue !== data.badge ? data.venue : undefined);
+
+const sections = [
+  { id: "education", title: "Education", show: cv.education.length > 0 },
+  { id: "publications", title: "Publications", show: papers.length > 0 },
+  { id: "experience", title: "Experience", show: cv.experience.length > 0 },
+  { id: "skills", title: "Skills", show: cv.skills.length > 0 },
+  { id: "activities", title: "Activities", show: cv.activities.length > 0 },
+].filter((section) => section.show);
+const has = (id: string) => sections.some((section) => section.id === id);
+const contact = site.social.filter(({ label }) => ["Email", "GitHub"].includes(label));
+---
+
+<Base title="CV" description={`Curriculum vitae of ${site.name}: education, publications, and experience.`}>
+  <header class="page-intro">
+    <div>
+      <p class="eyebrow">Curriculum vitae</p>
+      <h1>CV</h1>
+      {cv.intro && <p>{cv.intro}</p>}
+    </div>
+  </header>
+
+  <div class="article-layout">
+    <aside class="article-aside cv-aside">
+      {
+        cv.current && (
+          <>
+            <p>{cv.current.label}</p>
+            <p class="one-sentence">{cv.current.text}</p>
+          </>
+        )
+      }
+      <nav aria-label="CV sections">
+        <ol class="cv-toc">
+          {sections.map(({ id, title }) => <li><a href={`#${id}`}>{title}</a></li>)}
+        </ol>
+      </nav>
+      <LinkPills links={contact.map(({ label, url }) => ({ label, url }))} />
+    </aside>
+
+    <div class="cv">
+      {
+        has("education") && (
+          <section class="cv-section" id="education">
+            <h2>Education</h2>
+            <ol class="cv-list">{cv.education.map((entry) => <CvEntry {...entry} />)}</ol>
+          </section>
+        )
+      }
+
+      {
+        has("publications") && (
+          <section class="cv-section" id="publications">
+            <h2>Publications</h2>
+            <ol class="cv-list">
+              {papers.map((paper) => {
+                const byline = paperByline(paper);
+                return (
+                  <li class="cv-entry">
+                    <p class="cv-period">{paper.data.badge}</p>
+                    <div>
+                      <h3><a href={paperHref(paper)}>{paper.data.fullTitle ?? paper.data.title}</a></h3>
+                      {byline && (
+                        <p class="cv-org">
+                          {paper.data.authors
+                            ? authorParts(byline).map(({ text, me }) => (me ? <strong>{text}</strong> : text))
+                            : byline}
+                        </p>
+                      )}
+                      <LinkPills links={paperLinks(paper)} label={`${paper.data.title} links`} />
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+            {papers.some((paper) => paper.data.authors?.includes("*")) && <p class="cv-footnote">* Equal contribution</p>}
+          </section>
+        )
+      }
+
+      {
+        has("experience") && (
+          <section class="cv-section" id="experience">
+            <h2>Experience</h2>
+            <ol class="cv-list">{cv.experience.map((entry) => <CvEntry {...entry} />)}</ol>
+          </section>
+        )
+      }
+
+      {
+        has("skills") && (
+          <section class="cv-section" id="skills">
+            <h2>Skills</h2>
+            <dl class="cv-list cv-skills">
+              {cv.skills.map(({ label, value }) => (
+                <div class="cv-entry">
+                  <dt class="cv-period">{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+
+      {
+        has("activities") && (
+          <section class="cv-section" id="activities">
+            <h2>Activities</h2>
+            <ol class="cv-list">{cv.activities.map((entry) => <CvEntry {...entry} />)}</ol>
+          </section>
+        )
+      }
+    </div>
+  </div>
+</Base>
+
+<script>
+  // Highlight the CV section currently in view in the sidebar.
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>(".cv-toc a")].map((link) => [link.hash.slice(1), link]),
+  );
+  const visible = new Set<string>();
+  const update = () => {
+    const current = [...links.keys()].find((id) => visible.has(id));
+    links.forEach((link, id) => link.toggleAttribute("aria-current", id === current));
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? visible.add(entry.target.id) : visible.delete(entry.target.id)));
+      update();
+    },
+    { rootMargin: "-120px 0px -45% 0px" },
+  );
+  links.forEach((_, id) => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+</script>
