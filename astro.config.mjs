@@ -15,13 +15,16 @@ export default defineConfig({
     "/resume/": "/cv/",
     "/publications/": "/papers/",
     "/preprints/": "/papers/",
-    "/papers/2025-10-30-HEIR/": "/papers/heir/",
+    "/papers/2025-10-30-HEIR/": "https://light.princeton.edu/HEIR/",
     "/papers/2026-04-18-ScenarioControl/": "/papers/scenario-control/",
-    "/papers/2023-08-30-efficient-non-rigid-neural-radiance-fields/": "/papers/non-rigid-nerfs/",
-    "/papers/2020-12-14-privacy-preserving-face-recognition/": "/papers/privacy-face-recognition/",
+    "/papers/2023-08-30-efficient-non-rigid-neural-radiance-fields/": "/files/master-thesis.pdf",
+    "/papers/2020-12-14-privacy-preserving-face-recognition/": "/files/thesis.pdf",
     "/talks/2021-02-11-privacy-preserving-face-recognition/": "/talks/",
     "/talks/2021-11-20-privacy-preserving-face-recognition/": "/talks/",
-    // SCION's preview page, replaced by its project website.
+    // Former paper pages; these papers now link straight to their project page or PDF.
     "/papers/scion/": "https://princeton-computational-imaging.github.io/SCION/",
+    "/papers/heir/": "https://light.princeton.edu/HEIR/",
+    "/papers/non-rigid-nerfs/": "/files/master-thesis.pdf",
+    "/papers/privacy-face-recognition/": "/files/thesis.pdf",
   },
 });

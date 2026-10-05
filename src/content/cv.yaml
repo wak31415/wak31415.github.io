@@ -6,7 +6,7 @@ intro: Education, publications, research and industry experience, and activities
 
 current:
   label: Currently
-  text: PhD candidate at Princeton University, advised by Felix Heide.
+  text: "PhD candidate at Princeton University, advised by Felix Heide, working on world models: controllable video generation with long-horizon memory."
 
 education:
   - period: 2025 – present
@@ -17,17 +17,22 @@ education:
     org: University of Oxford
   - period: 2018 – 2021
     title: B.Sc. in Mathematics & Computer Science
-    org: École Polytechnique
+    org: École Polytechnique, Summa Cum Laude
   - period: 2019
     title: International Honors Program
     org: Stanford University
 
 experience:
   - period: Aug 2025 – present
-    title: PhD Candidate
-    org: Princeton University
+    title: PhD Researcher
+    org: Princeton Computational Imaging Lab, Princeton University
     details:
-      - Research on Gaussian splatting and unsupervised structure recognition, advised by Felix Heide.
+      - Researching world models, in particular controllable video generation with long-horizon memory, advised by Felix Heide.
+      - Developing spatially disentangled latent representations, designing and training spatial autoencoders and diffusion models from scratch with multi-GPU training.
+      - Led the controllable video-generation branch of ScenarioControl (ECCV 2026) and the graph-based motion-hierarchy research of HEIR (NeurIPS 2025); first author of SCION (NeurIPS 2026).
+  - period: 2025 – present
+    title: Graduate Fellow
+    org: AI for Accelerating Invention (AI²), Princeton AI Lab
   - period: Nov 2023 – Jul 2025
     title: Associate
     org: Boston Consulting Group GmbH
@@ -38,7 +43,7 @@ experience:
       - Research on non-rigid neural radiance fields for virtual-reality video conferencing with the Department of Engineering; supervised by Ismail Ceylan, Victor Prisacariu, and Philip Torr.
       - Developed an efficient novel-pose and view synthesis model that turns standard webcam input into new perspectives of the person in front of the camera.
       - Proposed a lightweight preprocessing stage for training and inference that uses existing priors to optimize ray sampling for real-time performance.
-  - period: 2022
+  - period: Jan – Jun 2022
     title: Applied Science Intern
     org: Zalando Switzerland AG
     details:
@@ -56,7 +61,7 @@ experience:
     org: Télécom Paris
     details:
       - Thesis on privacy-preserving face recognition for large-scale video surveillance using secure multi-party computation; proposed a framework that makes mass surveillance cryptographically impossible, with performance limitations.
-  - period: 2020
+  - period: Jul – Aug 2020
     title: Cryptography Research Intern
     org: Deutsche Bank AG
     details:
@@ -64,12 +69,24 @@ experience:
 
 skills:
   - label: Programming
-    value: C, C++, CUDA C/C++, Python, Rust
+    value: Python, C++, CUDA, Rust, C
+  - label: Machine learning
+    value: Transformers, diffusion models, autoencoders, representation learning, neural rendering, graph neural networks
+  - label: Tools
+    value: PyTorch, PyTorch Geometric, PyTorch DDP, Weights & Biases
+  - label: Systems
+    value: Multi-GPU training, CUDA kernel optimization, SLURM, Linux, Docker, Git, tmux
+  - label: Claude workflows
+    value: Claude Code (skills, hooks), Claude Cowork, research automation, cluster-job orchestration
   - label: Languages
     value: English (native), German (native), French (B2–C1)
 
 activities:
-  - title: Scholar
+  - period: 2025 – present
+    title: Graduate Fellow
+    org: Princeton AI Lab's AI for Accelerating Invention (AI²) initiative
+  - period: 2018 – 2023
+    title: Scholar
     org: Studienstiftung des deutschen Volkes
     details:
       - Scholarship spokesperson for the Paris region (2019 – 2020).
