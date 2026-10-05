@@ -3,8 +3,8 @@
 
 - date: 2026-09
   title: SCION accepted at NeurIPS 2026
-  text: Project details and paper to follow.
-  link: /papers/scion/
+  text: Scene composition with instanced neural primitives.
+  link: https://princeton-computational-imaging.github.io/SCION/
 
 - date: 2026-09
   title: Keryx released
