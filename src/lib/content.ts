@@ -60,7 +60,8 @@ export function paperLinks(paper: Paper, { includePost = true } = {}) {
 }
 
 /** Where a paper's card and title link: its project website, else its blog post. */
-export const paperHref = (paper: Paper) => paper.data.url ?? paperUrl(paper);
+export const paperHref = (paper: Paper) =>
+  paper.data.url ?? (paper.data.post ? paperUrl(paper) : (paper.data.links[0]?.url ?? paperUrl(paper)));
 
 export const projectUrl = (project: Project) => `/projects/${project.id}/`;
 

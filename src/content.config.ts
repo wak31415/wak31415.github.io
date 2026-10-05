@@ -87,7 +87,7 @@ const papers = defineCollection({
     links: z.array(link).default([]),
     /** Overrides the "Blog post" pill label. */
     noteLabel: z.string().optional(),
-    /** false: no page of its own on this site; the card and CV link only to `url` and `links`. */
+    /** false: no page of its own on this site; the card and CV link to `url`, else the first of `links`. */
     post: z.boolean().default(true),
     card: z.discriminatedUnion("type", [image, video]),
     hero: z.discriminatedUnion("type", [image, video]).optional(),
