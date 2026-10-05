@@ -5,7 +5,7 @@ import Article from "../../layouts/Article.astro";
 import { getPapers, paperLinks, paperUrl, type Paper } from "../../lib/content";
 
 export const getStaticPaths = (async () => {
-  const papers = await getPapers();
+  const papers = (await getPapers()).filter((paper) => paper.data.post);
   return papers.map((paper, index) => ({
     params: { id: paper.id },
     props: { paper, previous: papers[index - 1], next: papers[index + 1] },

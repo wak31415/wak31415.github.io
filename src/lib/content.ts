@@ -51,11 +51,11 @@ export const isExternal = (url: string) => /^(https?:)?\/\//.test(url) || url.st
 
 /** Pills for a paper: Project, then its other links, then (unless on the post itself) the blog post. */
 export function paperLinks(paper: Paper, { includePost = true } = {}) {
-  const { url, links, noteLabel } = paper.data;
+  const { url, links, noteLabel, post } = paper.data;
   return [
     ...(url ? [{ label: "Project", url }] : []),
     ...links,
-    ...(includePost ? [{ label: noteLabel ?? "Blog post", url: paperUrl(paper) }] : []),
+    ...(includePost && post ? [{ label: noteLabel ?? "Blog post", url: paperUrl(paper) }] : []),
   ];
 }
 

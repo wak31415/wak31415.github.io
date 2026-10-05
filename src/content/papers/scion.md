@@ -1,29 +1,21 @@
 ---
 title: SCION
-description: An initial preview of SCION by William Koch.
+fullTitle: "SCION: Scene Composition with Instanced Neural Primitives"
+description: "SCION: Scene Composition with Instanced Neural Primitives (NeurIPS 2026)."
 date: 2026-09-01
 section: publications
 featured: true
 badge: NeurIPS 2026
 venue: NeurIPS 2026
-articleMeta: NeurIPS 2026 · Details forthcoming
-authors: William Koch, Amogh Joshi, Cyrus Vaccha, Cheng Zheng, Felix Heide
-summary: Project details will be published with the accompanying website.
-deck: An early visual preview. The full project page and paper details will be published with the accompanying website.
-aside:
-  label: Status
-  text: Preview only. Publication details and links will be added at release.
-noteLabel: View preview
+topic: Neural scene representations
+authors: William Koch, Amogh Joshi, Cyrus Vachha, Cheng Zheng, Felix Heide
+summary: Reusable neural primitives and lightweight instances for compact, editable 3D scenes.
+url: https://princeton-computational-imaging.github.io/SCION/
+links:
+  - { label: arXiv, url: "https://arxiv.org/abs/2610.02322" }
+post: false
 card:
   type: video
   src: /assets/video/scion-card.mp4
   poster: /assets/scion-poster.webp
-hero:
-  type: video
-  src: /assets/video/scion-full.mp4
-  poster: /assets/scion-poster.webp
 ---
-
-## Details forthcoming
-
-This entry intentionally contains only the project title and teaser video for now.

@@ -21,5 +21,7 @@ export default defineConfig({
     "/papers/2020-12-14-privacy-preserving-face-recognition/": "/papers/privacy-face-recognition/",
     "/talks/2021-02-11-privacy-preserving-face-recognition/": "/talks/",
     "/talks/2021-11-20-privacy-preserving-face-recognition/": "/talks/",
+    // SCION's preview page, replaced by its project website.
+    "/papers/scion/": "https://princeton-computational-imaging.github.io/SCION/",
   },
 });
