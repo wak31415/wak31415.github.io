@@ -10,7 +10,7 @@ order: 3
 featured: true
 deck: Or, how to code without a laptop or phone.
 aside:
-  text: Inkwell runs on a separate computer. It reads new handwriting from a reMarkable Paper Pro, passes requests to a (coding) agent, and adds the result/images/visualizations to the same notebook. The tablet runs its stock software.
+  text: Inkwell runs on a separate computer. It reads new handwriting from a reMarkable Paper Pro, passes requests to a (coding) agent, and adds its answer to the same notebook as text, images, or charts. The tablet runs its stock software.
 media:
   type: image
   src: /assets/projects/remarkable-tablet-sketch.webp
@@ -51,7 +51,7 @@ On the next page, I added a few requirements. I wanted editable assumptions and 
   <figcaption>The requirements, and the request itself: <code>@c @implement</code>.</figcaption>
 </figure>
 
-## Iterating with the agent
+## Interacting with the agent
 
 The agent read my sketch, wrote a small Python package with mock data in several currencies, and rendered the views as chart images in my notebook. It had followed my request—I had even asked it to share images of each view—but I'd left out the important part: I wanted an interactive dashboard, not a set of static plots.
 
