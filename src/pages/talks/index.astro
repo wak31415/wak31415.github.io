@@ -1,12 +1,9 @@
 ---
-import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import LinkPills from "../../components/LinkPills.astro";
 import { formatMonth, getTalks } from "../../lib/content";
 
-const talks = await Promise.all(
-  (await getTalks()).map(async (talk) => ({ talk, Content: (await render(talk)).Content })),
-);
+const talks = await getTalks();
 ---
 
 <Base title="Talks" description="Talks and presentations by William Koch.">
@@ -20,16 +17,12 @@ const talks = await Promise.all(
   {
     talks.length > 0 ? (
       <section class="section-block talks-list" aria-label="Talks">
-        {talks.map(({ talk, Content }) => (
+        {talks.map((talk) => (
           <article class="talk-entry" id={talk.id}>
+            <p class="meta">{formatMonth(talk.data.date)}</p>
             <div>
-              <p class="meta">
-                {[formatMonth(talk.data.date), talk.data.venue, talk.data.location].filter(Boolean).join(" · ")}
-              </p>
               <h2>{talk.data.title}</h2>
-            </div>
-            <div class="talk-body">
-              <Content />
+              <p class="talk-venue">{[talk.data.venue, talk.data.location].filter(Boolean).join(" · ")}</p>
               <LinkPills links={talk.data.links} />
             </div>
           </article>

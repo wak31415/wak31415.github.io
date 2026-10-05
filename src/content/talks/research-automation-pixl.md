@@ -1,7 +1,6 @@
 ---
-title: Research Automation
-date: 2026-02-01
-venue: PIXL
+title: AI Workflow Automation
+date: 2026-04-03
+venue: PIXL skill-sharing lunch
+location: Princeton, NJ
 ---
-
-A talk on research automation and agent-assisted workflows, presented at PIXL.
