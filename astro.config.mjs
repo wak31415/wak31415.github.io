@@ -7,6 +7,11 @@ export default defineConfig({
   site: "https://www.william-koch.com",
   build: { format: "directory" },
   devToolbar: { enabled: false },
+  // Astro minifies CSS without browser targets, so lightningcss adds no vendor
+  // prefixes (and collapses hand-written prefixed/unprefixed pairs into one,
+  // which dropped backdrop-filter for Firefox). With explicit targets it emits
+  // both backdrop-filter and -webkit-backdrop-filter; don't hand-write prefixes.
+  vite: { build: { cssTarget: ["chrome111", "edge111", "firefox114", "safari16.4", "ios16.4"] } },
   // $inline$ and $$display$$ math in Markdown; the Article layout loads katex.min.css.
   markdown: { processor: satteri({ features: { math: true }, hastPlugins: [katexPlugin] }) },
   // Old Jekyll URLs that may still be linked from elsewhere.
