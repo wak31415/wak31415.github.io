@@ -16,7 +16,7 @@ export const site = {
     { label: "Email", handle: "william.koch@princeton.edu", url: "mailto:william.koch@princeton.edu" },
     { label: "GitHub", handle: "@wak31415", url: "https://github.com/wak31415" },
     { label: "Bluesky", handle: "@wak31415.bsky.social", url: "https://bsky.app/profile/wak31415.bsky.social" },
-    { label: "Twitter / X", handle: "@WilliamKoc61157", url: "https://x.com/WilliamKoc61157" },
+    { label: "Twitter / X", handle: "@williamkoch314", url: "https://x.com/williamkoch314" },
   ],
   /** Number of news items on the overview page. */
   newsLimit: 5,
