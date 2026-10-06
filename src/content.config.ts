@@ -138,6 +138,7 @@ const talks = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     venue: z.string(),
+    venueUrl: z.string().url().optional(),
     location: z.string().optional(),
     links: z.array(link).default([]),
     draft: z.boolean().default(false),

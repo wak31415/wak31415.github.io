@@ -130,6 +130,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 
 .talk-entry .meta { margin: 4px 0 0; }
 .talk-entry h2 { margin: 0; font-size: clamp(1.2rem, 1.9vw, 1.55rem); font-weight: 520; line-height: 1.2; letter-spacing: -.025em; }
 .talk-venue { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+.talk-venue a { color: inherit; text-underline-offset: 3px; }
+.talk-venue a:hover { color: var(--ink); }
 .talk-entry .pills { margin-top: 12px; }
 .feature-card[id], .talk-entry[id] { scroll-margin-top: 118px; }
 .article-header { padding: clamp(54px, 8vw, 108px) clamp(24px, 5.8vw, 84px) clamp(50px, 7vw, 86px); }

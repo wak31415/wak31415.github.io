@@ -22,7 +22,10 @@ const talks = await getTalks();
             <p class="meta">{formatMonth(talk.data.date)}</p>
             <div>
               <h2>{talk.data.title}</h2>
-              <p class="talk-venue">{[talk.data.venue, talk.data.location].filter(Boolean).join(" · ")}</p>
+              <p class="talk-venue">
+                {talk.data.venueUrl ? <a href={talk.data.venueUrl}>{talk.data.venue}</a> : talk.data.venue}
+                {talk.data.location && ` · ${talk.data.location}`}
+              </p>
               <LinkPills links={talk.data.links} />
             </div>
           </article>
