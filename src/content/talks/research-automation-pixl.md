@@ -1,6 +1,6 @@
 ---
 title: AI Workflow Automation
 date: 2026-04-03
-venue: PIXL skill-sharing lunch
+venue: PIXL Cluster Seminar Series
 location: Princeton, NJ
 ---
