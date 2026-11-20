@@ -1,6 +1,11 @@
 # Newest first is not required; entries are sorted by date. The overview page shows the latest five.
 # date: YYYY-MM or YYYY-MM-DD · link: a page on this site or a full URL (optional)
 
+- date: 2026-11
+  title: SCION code released
+  text: Training, evaluation, and the campus ID/OOD scenes are open source.
+  link: https://github.com/princeton-computational-imaging/SCION
+
 - date: 2026-09
   title: SCION accepted at NeurIPS 2026
   text: Scene composition with instanced neural primitives.

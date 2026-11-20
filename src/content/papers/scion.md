@@ -13,6 +13,7 @@ summary: Reusable neural primitives and lightweight instances for compact, edita
 url: https://princeton-computational-imaging.github.io/SCION/
 links:
   - { label: arXiv, url: "https://arxiv.org/abs/2610.02322" }
+  - { label: GitHub, url: "https://github.com/princeton-computational-imaging/SCION" }
 post: false
 card:
   type: video
