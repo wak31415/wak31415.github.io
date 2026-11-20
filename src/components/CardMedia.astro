@@ -5,7 +5,7 @@ type Media = Paper["data"]["card"] | Project["data"]["media"];
 
 interface Props {
   media: Media;
-  badge: string;
+  badge?: string;
   href?: string;
   /** Accessible name for the video link. */
   label: string;
@@ -23,7 +23,7 @@ const videoType = (src: string) => `video/${src.split(".").pop() === "webm" ? "w
         <video muted loop playsinline preload="auto" poster={media.poster}>
           <source src={media.src} type={videoType(media.src)} />
         </video>
-        <span class="glass-label">{badge}</span>
+        {badge && <span class="glass-label">{badge}</span>}
       </Link>
       <span class="video-play" aria-hidden="true"><span>▶</span></span>
     </div>
@@ -37,14 +37,14 @@ const videoType = (src: string) => `video/${src.split(".").pop() === "webm" ? "w
       style={media.background ? `background: ${media.background}` : undefined}
     >
       <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" />
-      <span class="glass-label">{badge}</span>
+      {badge && <span class="glass-label">{badge}</span>}
     </Link>
   )
 }
 {
   media.type === "flow" && (
     <div class:list={["media", "project-visual", `flow-${media.theme}`]} role="img" aria-label={media.label}>
-      <span class="glass-label">{badge}</span>
+      {badge && <span class="glass-label">{badge}</span>}
       <div>
         {media.steps.map((step, index) => (
           <>

@@ -104,7 +104,8 @@ const projects = defineCollection({
     summary: z.string(),
     /** Card meta line, also shown above the write-up title. */
     meta: z.string(),
-    badge: z.string(),
+    /** Frosted label on the card image; omit for none. */
+    badge: z.string().optional(),
     /** "earlier" projects are listed in their own section below the current ones. */
     section: z.enum(["current", "earlier"]).default("current"),
     /** Render the Markdown body as its own page at /projects/<id>/. The card then shows `summary` and links there. */

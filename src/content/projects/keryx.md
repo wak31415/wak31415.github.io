@@ -2,9 +2,9 @@
 title: Keryx, a voice agent harness
 summary: A personal voice agent you can phone. It hands your request to coding agents on your machine and calls you back when the work is done.
 meta: Voice agent · Open source · 2026
-badge: Pre-1.0
-url: https://github.com/wak31415/keryx
+url: https://keryxvoice.ai/
 links:
+  - { label: Website, url: "https://keryxvoice.ai/" }
   - { label: GitHub, url: "https://github.com/wak31415/keryx" }
 order: 1
 featured: true
