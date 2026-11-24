@@ -17,6 +17,7 @@ const paperByline = ({ data }: Paper) => data.authors ?? (data.venue !== data.ba
 const sections = [
   { id: "education", title: "Education", show: cv.education.length > 0 },
   { id: "publications", title: "Publications", show: papers.length > 0 },
+  { id: "patents", title: "Patent Applications", show: cv.patents.length > 0 },
   { id: "experience", title: "Experience", show: cv.experience.length > 0 },
   { id: "skills", title: "Skills", show: cv.skills.length > 0 },
   { id: "activities", title: "Activities", show: cv.activities.length > 0 },
@@ -88,6 +89,15 @@ const contact = site.social.filter(({ label }) => ["Email", "GitHub"].includes(l
               })}
             </ol>
             {papers.some((paper) => paper.data.authors?.includes("*")) && <p class="cv-footnote">* Equal contribution</p>}
+          </section>
+        )
+      }
+
+      {
+        has("patents") && (
+          <section class="cv-section" id="patents">
+            <h2>Patent Applications</h2>
+            <ol class="cv-list">{cv.patents.map((entry) => <CvEntry {...entry} />)}</ol>
           </section>
         )
       }

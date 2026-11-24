@@ -185,6 +185,7 @@ const cv = defineCollection({
     intro: z.string().optional(),
     current: z.object({ label: z.string(), text: z.string() }).optional(),
     education: z.array(cvEntry).default([]),
+    patents: z.array(cvEntry).default([]),
     experience: z.array(cvEntry).default([]),
     skills: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
     activities: z.array(cvEntry).default([]),

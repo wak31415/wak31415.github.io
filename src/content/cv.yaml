@@ -22,6 +22,11 @@ education:
     title: International Honors Program
     org: Stanford University
 
+patents:
+  - period: 2026
+    title: Reconstructing Reusable Neural Instanced Primitives from Multi-View Images
+    org: "William Koch, Felix Heide. U.S. Provisional Patent Application, filed Sep 23, 2026."
+
 experience:
   - period: Aug 2025 – present
     title: PhD Researcher
