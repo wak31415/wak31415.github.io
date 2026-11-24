@@ -2,6 +2,11 @@
 # date: YYYY-MM or YYYY-MM-DD · link: a page on this site or a full URL (optional)
 
 - date: 2026-11
+  title: ScenarioControl on the Root Access podcast
+  text: Lili Gao and I talk about generating driving scenarios for self-driving cars.
+  link: https://www.youtube.com/watch?v=YekwBjGm7nQ
+
+- date: 2026-11
   title: SCION code released
   text: Training, evaluation, and the campus ID/OOD scenes are open source.
   link: https://github.com/princeton-computational-imaging/SCION
